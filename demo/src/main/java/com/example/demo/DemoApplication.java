@@ -14,8 +14,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
+@EnableJpaAuditing
 @EnableConfigurationProperties(SpringProperties.class)
 public class DemoApplication {
 
