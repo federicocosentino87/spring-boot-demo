@@ -1,24 +1,19 @@
 package com.example.demo;
 
+import com.example.demo.config.SpringProperties;
+
+import org.ocpsoft.prettytime.PrettyTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-
-import com.example.demo.config.SpringProperties;
-import com.example.demo.domain.Comment;
-import com.example.demo.domain.Link;
-import com.example.demo.repository.CommentRepository;
-import com.example.demo.repository.LinkRepository;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 @SpringBootApplication
-@EnableJpaAuditing
 @EnableConfigurationProperties(SpringProperties.class)
 public class DemoApplication {
 
@@ -34,7 +29,18 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 		
 	}
-	
+
+	@Bean
+	PrettyTime prettyTime() {
+		return new PrettyTime();
+	}
+
+	@Bean
+	public SpringSecurityDialect securityDialect() {
+		return new SpringSecurityDialect();
+	}
+
+	/*
 	@Bean
 	CommandLineRunner runner(LinkRepository linkRepository, CommentRepository commentRepository) {
 	    return args -> {
@@ -50,6 +56,7 @@ public class DemoApplication {
 	        System.out.println(firstLink.getTitle());
 	    };
 	}
+*/
 
 //	@Bean
 //	@Profile("dev")
