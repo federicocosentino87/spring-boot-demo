@@ -3,20 +3,31 @@ package com.example.demo.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-import lombok.Data;
+import org.springframework.lang.NonNull;
+
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
 @NoArgsConstructor
-public class Vote {
-	
-	@Id 
-	@GeneratedValue
+@RequiredArgsConstructor
+@Getter
+@Setter
+public class Vote extends Auditable {
+
+    @Id
+    @GeneratedValue
     private Long id;
-   // private User user;
-   // private Link link;
-    private int vote;
-    
+
+    @NonNull
+    private short direction;
+
+    @NonNull
+    @ManyToOne
+    private Link link;
+
 }
